@@ -18,7 +18,7 @@
 
 <br/>
 
-<img src="figures/workflow_diagram.png" alt="PI-CTBA-Net Pipeline" width="90%"/>
+<img src="figures/workflow_diagram V2.png" alt="PI-CTBA-Net Pipeline" width="90%"/>
 
 *End-to-end pipeline: data ingestion → physics-informed preprocessing → sliding-window segmentation → model training → explainability → Digital Twin decision support*
 
@@ -293,7 +293,7 @@ plotter.figure_violin_plots()
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/your-username/PI-CTBA-Net.git
+git clone https://github.com/uzzal2200/A-Physics-Informed-Explainable-Deep-Learning-Digital-Twin-for-Wind-Turbine.git
 cd PI-CTBA-Net
 pip install -r requirements.txt
 ```
