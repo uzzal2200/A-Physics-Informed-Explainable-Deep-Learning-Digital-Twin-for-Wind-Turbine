@@ -1,0 +1,122 @@
+# ============================================================
+#  PI-CTBA-Net — Configuration File
+#  Physics-Informed CNN-Transformer-BiLSTM-Attention Network
+#  for Wind Turbine Anomaly Detection on CARE Benchmark
+# ============================================================
+
+# ── Dataset ──────────────────────────────────────────────────
+data:
+  care_root: "data/CARE"          # Path to CARE dataset root
+  farms: ["A", "B", "C"]
+  sensor_map:
+    Farm_A:
+      wind_speed:      "wind_speed_3_avg"
+      active_power:    "power_30_avg"
+      reactive_power:  "react_power_27_avg"
+      ambient_temp:    "sensor_0_avg"
+      grid_frequency:  "sensor_26_avg"
+      rotor_speed:     "sensor_52_avg"
+      gearbox_oil_temp:"sensor_12_avg"
+      generator_temp:  "sensor_15_avg"
+      pitch_angle:     "sensor_5_avg"
+    Farm_B:
+      wind_speed:      "wind_speed_59_avg"
+      active_power:    "power_62_avg"
+      reactive_power:  "react_power_11_avg"
+      ambient_temp:    "sensor_8_avg"
+      grid_frequency:  "sensor_23_avg"
+      rotor_speed:     "sensor_25_avg"
+      gearbox_oil_temp:"sensor_39_avg"
+      generator_temp:  "sensor_32_avg"
+      pitch_angle:     "sensor_10_avg"
+    Farm_C:
+      wind_speed:      "wind_speed_235_avg"
+      active_power:    "power_6_avg"
+      reactive_power:  "react_power_119_avg"
+      ambient_temp:    "sensor_7_avg"
+      grid_frequency:  "sensor_47_avg"
+      rotor_speed:     "sensor_144_avg"
+      gearbox_oil_temp:"sensor_186_avg"
+      generator_temp:  "sensor_199_avg"
+      pitch_angle:     "sensor_103_avg"
+  thermal_features:
+    - "ambient_temp"
+    - "gearbox_oil_temp"
+    - "generator_temp"
+  results_dir: "results"
+  checkpoints_dir: "checkpoints"
+
+# ── Windowing ─────────────────────────────────────────────────
+windowing:
+  window_size: 144          # 24 hours at 10-min intervals
+  stride: 72                # 50% overlap
+  anomaly_threshold: 0.05   # >5% anomalous timesteps → anomaly window
+
+# ── Data Split ────────────────────────────────────────────────
+split:
+  train: 0.70
+  val:   0.15
+  test:  0.15
+  random_state: 42
+  stratify: true
+
+# ── Model Architecture ────────────────────────────────────────
+model:
+  name: "PI-CTBA-Net"
+  # CNN Encoder
+  cnn_filters_1: 64
+  cnn_kernel_1: 3
+  cnn_filters_2: 128
+  cnn_kernel_2: 5
+  # Transformer Encoder
+  d_model: 128
+  nhead: 8
+  num_transformer_layers: 2
+  dim_feedforward: 256
+  transformer_dropout: 0.1
+  # BiLSTM
+  bilstm_hidden: 128
+  bilstm_layers: 1
+  bilstm_dropout: 0.1
+  # MHA Pooling
+  mha_heads: 8
+  # MLP Classifier Head
+  mlp_hidden: [128, 64, 32]
+  mlp_dropout: [0.3, 0.2]
+  num_features: 12          # 9 physics + 3 temporal
+
+# ── Physics Loss Weights ─────────────────────────────────────
+physics_loss:
+  lambda_betz:         0.10   # L1: Betz power curve
+  lambda_tsr:          0.05   # L2: Tip speed ratio stability
+  lambda_thermal:      0.05   # L3: Newton's law of cooling
+  lambda_power_factor: 0.05   # L4: Electrical power factor
+  lambda_pitch:        0.05   # L5: Pitch angle smoothness
+  epsilon: 1.0e-6             # Numerical stability
+
+# ── Training ─────────────────────────────────────────────────
+training:
+  batch_size: 64
+  max_epochs: 100
+  patience: 30                # Early stopping
+  learning_rate: 3.0e-4
+  weight_decay: 1.0e-5
+  grad_clip_norm: 1.0
+  lr_scheduler: "cosine"      # cosine annealing
+  pos_weight: 1.105           # BCE class weight = N_normal/N_anomaly
+  device: "cuda"              # "cuda" or "cpu"
+  num_workers: 4
+  seed: 42
+
+# ── Evaluation ────────────────────────────────────────────────
+evaluation:
+  threshold: 0.5
+  bootstrap_n: 1000
+  bootstrap_seed: 42
+  mcnemar_alpha: 0.05
+
+# ── Explainability ────────────────────────────────────────────
+explainability:
+  n_background_samples: 200
+  n_test_samples: 500
+  gradient_shap_seed: 42

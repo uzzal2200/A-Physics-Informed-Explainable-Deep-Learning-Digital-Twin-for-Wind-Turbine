@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+.env
+venv/
+env/
+
+# Data (download separately from CARE benchmark)
+data/CARE/
+Data/
+
+Notebook/
+
+# Model checkpoints
+checkpoints/*.pt
+
+# Results (regenerate with scripts)
+results/
+figures/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
