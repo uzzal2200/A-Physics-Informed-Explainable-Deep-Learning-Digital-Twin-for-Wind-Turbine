@@ -16,9 +16,6 @@
 **96.81% Accuracy · 96.69% F1 · AUC-ROC 0.9971 · FAR 3.04%**  
 *Best result on every metric across 9 evaluated architectures on the CARE benchmark*
 
-<br/>
-
-<img src="figures/workflow_diagram V2.png" alt="PI-CTBA-Net Pipeline" width="90%"/>
 
 *End-to-end pipeline: data ingestion → physics-informed preprocessing → sliding-window segmentation → model training → explainability → Digital Twin decision support*
 

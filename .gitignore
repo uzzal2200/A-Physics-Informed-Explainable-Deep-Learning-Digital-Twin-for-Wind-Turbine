@@ -15,6 +15,7 @@ data/CARE/
 Data/
 
 Notebook/
+figures/
 
 # Model checkpoints
 checkpoints/*.pt
