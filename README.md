@@ -1,11 +1,8 @@
 <div align="center">
 
-# 🌬️ A Physics-Informed Explainable Deep Learning Digital Twin for
-# Wind Turbine System Identification, Condition Monitoring, and
-# Predictive Maintenance
+# 🌬️ A Physics-Informed Explainable Deep Learning Digital Twin for Wind Turbine System Identification, Condition Monitoring, and Predictive Maintenance
 
-### Physics-Informed CNN-Transformer-BiLSTM-Attention Network  
-### for Wind Turbine Anomaly Detection
+
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
