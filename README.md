@@ -1,6 +1,8 @@
 <div align="center">
 
-# 🌬️ PI-CTBA-Net
+# 🌬️ A Physics-Informed Explainable Deep Learning Digital Twin for
+# Wind Turbine System Identification, Condition Monitoring, and
+# Predictive Maintenance
 
 ### Physics-Informed CNN-Transformer-BiLSTM-Attention Network  
 ### for Wind Turbine Anomaly Detection
@@ -406,23 +408,6 @@ If you use PI-CTBA-Net in your research, please cite:
  
 }
 ```
-
-**CARE Dataset:**
-
-```bibtex
-@article{guck2024care,
-  title   = {{CARE} to compare: a real-world benchmark dataset for early 
-             fault detection in wind turbine data},
-  author  = {G{\"u}ck, C. and Roelofs, C.M.A. and Faulstich, S.},
-  journal = {Data (Basel)},
-  volume  = {9},
-  number  = {12},
-  pages   = {138},
-  year    = {2024},
-}
-```
-
----
 
 ## 📜 License
 
