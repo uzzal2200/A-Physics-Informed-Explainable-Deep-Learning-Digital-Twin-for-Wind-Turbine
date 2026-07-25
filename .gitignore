@@ -21,7 +21,7 @@ checkpoints/*.pt
 
 # Results (regenerate with scripts)
 results/
-figures/
+
 
 # Jupyter
 .ipynb_checkpoints/
